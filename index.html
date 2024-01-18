@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maulik Jivani</title>
+    <link rel="shortcut icon" href="./favicon_io/android-chrome-512x512.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/f422726628.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
     <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" /> <!-- Recommended -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="media.css">
     <link rel="stylesheet" href="style.css">
-    <!-- <link rel="stylesheet" href="m.css"> -->
 </head>
 <body>
 
-    <!-- <div class="mouse"></div> -->
+    <div class="mouse"></div>
     
+
+    <div class="loader flex">
+        <h1>Ready To Explore?</h1>
+    </div>
     <div class="main">
         <div class="page1" id="home">
             <div class="nav flex">
@@ -42,7 +46,7 @@
                     <h1>Treat your eyes with.......... <span>"modern age design"</span></h1>
                     <div class="icons">
                         <a href="https://www.linkedin.com/in/maulikjivani/"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="mailto:maulik.monkenterprise@gmail.com" class="rotate90"><i class="fa-brands fa-envelope"></i></a>
+                        <a href="mailto:maulik.monkenterprise@gmail.com" ><i class="fa-brands fa-envelope rotate90"></i></a>
                         <a href="https://github.com/maulik1110"><i class="fa-brands fa-github"></i></a>
                     </div>
                 </div>
@@ -50,25 +54,25 @@
                 <div class="right-one">
                     <!-- <div class="gallary"> -->
                         <div class="box" id="one">
-                            <video src="v1.mp4" muted loop autoplay ></video>
+                            <video src="one.mp4" muted loop autoplay ></video>
                         </div>
                         <div class="box" id="two">
-                            <video src="v2.mp4" muted loop autoplay></video>
+                            <video src="twooo.mp4" muted loop autoplay></video>
                         </div>
                         <div class="box" id="three">
-                            <video src="v three.mp4" muted loop autoplay></video>
+                            <video src="three.mp4" muted loop autoplay></video>
                         </div>
                         <div class="box" id="four">
-                            <video src="vfour.mp4" muted loop autoplay ></video>
+                            <video src="four.mp4" muted loop autoplay ></video>
                         </div>
                         <div class="box" id="box5">
-                            <video src="v5.mp4" muted loop autoplay ></video>
+                            <video src="five.mp4" muted loop autoplay ></video>
                         </div>
                         <!-- <div class="box" id="6">
                             <video src="./v6.mp4" muted loop autoplay></video>
                         </div> -->
                         <div class="box" id="box7">
-                            <video src="./v1.mp4" muted loop autoplay ></video>
+                            <video src="seven.mp4" muted loop autoplay ></video>
                         </div>
                         
                     <!-- </div> -->
@@ -114,7 +118,7 @@
         <div class="page3" id="project">
             <h2>Projects</h2>
             <div class="timeline">
-                <div class="container lc"  onclick="location.href='./webpage1.html'">
+                <div class="container lc"  onclick="location.href='./webpage.html'">
                     <div class="icon">
                         <i class="fa-solid fa-snowflake"></i>
                     </div>
@@ -241,9 +245,13 @@
                     </div>
                 </div>
                 <div class="right-five flex">
-                    <input id="name" type="text" name="name" id="name" placeholder="write your name.....">
-                    <input id="email" type="email" name="email" id="email" placeholder="xyz@gmail.com">
-                    <input id="message" type="text" name="message" id="message" placeholder="Your message">
+                    <form name="submit-to-google-sheet">
+                        <input id="name" type="text" name="name" id="name" placeholder="write your name.....">
+                        <input id="email" type="email" name="email" id="email" placeholder="xyz@gmail.com">
+                        <input id="message" type="text" name="message" id="message" placeholder="Your message">
+                        <button class="btn" type="submit">Submit</button>
+                    </form>
+                    <span id="msg"></span>
                 </div>
             </div>
         </div>
@@ -319,8 +327,28 @@
 
         // requestAnimationFrame(raf)
 
+            
+        var msg = document.getElementById("msg");
+const scriptURL = 'https://script.google.com/macros/s/AKfycbz7rtvcj5jTN1duQPAOnxk9ksoMModr3tCWsTfubM2QQDq-daOrpfYNZP80vyjxTkXV/exec';
+const form = document.forms['submit-to-google-sheet'];
 
-        
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+    .then(response => {
+      // Update the message immediately
+      msg.innerHTML = "Message sent Successfully";
+      setTimeout(() => {
+        msg.innerHTML = '';
+      }, 4000);
+      form.reset();
+    })
+    .catch(error => {
+      console.error('Error!', error.message);
+      // You might want to handle error messages as well
+    });
+});
+
     </script>
 
     <script src="./script.js"></script>
